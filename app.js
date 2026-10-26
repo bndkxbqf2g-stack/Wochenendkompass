@@ -18,8 +18,14 @@ const SOURCES = [
   ['Reservix', 'https://www.reservix.de']
 ];
 const HOME = 'Zellingen';
+// Grobe Straßenkilometer ab Zellingen (gerundet), erkannt am Ortsnamen im Feld „place“
+const DIST_KM = [
+  ['retzbach', 3], ['karlstadt', 8], ['himmelstadt', 6], ['thüngersheim', 10], ['veitshöchheim', 12], ['gemünden', 17],
+  ['würzburg', 17], ['lohr', 20], ['marktheidenfeld', 25], ['ochsenfurt', 30], ['kitzingen', 35], ['schweinfurt', 45],
+  ['bad kissingen', 60], ['rothenburg', 65], ['aschaffenburg', 75], ['bamberg', 100], ['nürnberg', 110], ['frankfurt', 120]
+];
 const REPO = 'bndkxbqf2g-stack/Wochenendkompass';
-const K = { wishes: 'wk_wishes', items: 'wk_items', settings: 'wk_settings', queue: 'wk_queue', feed: 'wk_feedcache', favs: 'wk_favs', seen: 'wk_seen' };
+const K = { dist: 'wk_dist', wishes: 'wk_wishes', items: 'wk_items', settings: 'wk_settings', queue: 'wk_queue', feed: 'wk_feedcache', favs: 'wk_favs', seen: 'wk_seen' };
 
 const $ = (s, r = document) => r.querySelector(s);
 const load = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } };
@@ -31,7 +37,7 @@ const state = {
   feed: load(K.feed, { updated: null, items: [] }),
   settings: load(K.settings, { feedUrl: '', apiUrl: '', apiToken: '' }),
   queue: load(K.queue, []), favs: load(K.favs, []),
-  filter: 'alle', range: 'all', syncErr: false
+  filter: 'alle', range: 'all', maxKm: load(K.dist, 0), syncErr: false
 };
 
 function el(tag, props = {}, ...kids) {
@@ -70,6 +76,22 @@ function inRange(it) {
   }
   const to = new Date(now); to.setDate(now.getDate() + Number(state.range) + 1);
   return s >= now && s < to;
+}
+function distanceKm(it) {
+  if (Number.isFinite(it.distanceKm)) return it.distanceKm;
+  const p = (it.place || '').toLowerCase();
+  let best = null, at = -1;
+  for (const [name, km] of DIST_KM) {
+    const i = p.lastIndexOf(name);
+    if (i >= at && i >= 0 && !/[a-zäöüß]/.test(p[i - 1] || ' ')) { best = km; at = i; }
+  }
+  return best;
+}
+// Einträge ohne erkennbare Entfernung bleiben sichtbar
+function inDistance(it) {
+  if (!state.maxKm) return true;
+  const km = distanceKm(it);
+  return km == null || km <= state.maxKm;
 }
 function isNew(it) {
   if ((state.feed.newIds || []).includes(it.id)) return true;
@@ -130,7 +152,7 @@ function card(it) {
     el('div', { class: 'title' }, it.title),
     it.description ? el('p', { class: 'desc' }, it.description) : null,
     el('span', { class: 'pill' }, '🕘 ' + fmtDate(it)),
-    it.place ? el('span', { class: 'pill' }, '📍 ' + it.place) : null,
+    it.place ? el('span', { class: 'pill' }, '📍 ' + it.place + (distanceKm(it) != null ? ` · ca. ${distanceKm(it)} km` : '')) : null,
     it.price ? el('span', { class: 'pill price' }, '€ ' + it.price) : null,
     it.soldOut ? el('span', { class: 'pill warn' }, 'Laut Quelle ausverkauft') : null,
     el('div', { class: 'actions' }, acts),
@@ -159,7 +181,7 @@ function renderHeader() {
 function renderList() {
   const list = $('#list'); list.replaceChildren();
   const items = sorted(visible().filter(it =>
-    (state.filter === 'alle' || (state.filter === 'neu' ? isNew(it) : it.category === state.filter)) && inRange(it)));
+    (state.filter === 'alle' || (state.filter === 'neu' ? isNew(it) : it.category === state.filter)) && inRange(it) && inDistance(it)));
   items.forEach(it => list.append(card(it)));
   const e = $('#empty'); e.hidden = items.length > 0;
   if (!items.length) e.textContent = state.feed.updated || state.items.length ? 'Keine passenden Tipps für diesen Filter.' : 'Noch keine Tipps. Tippe oben auf „Jetzt aktualisieren“.';
@@ -362,6 +384,8 @@ function init() {
   $('#wishCat').querySelectorAll('option[value="sonstiges"]')[1]?.remove();
   document.querySelectorAll('.tabbar button').forEach(b => b.addEventListener('click', () => showTab(b.dataset.tab)));
   $('#range').addEventListener('change', e => { state.range = e.target.value; render(); });
+  $('#dist').value = String(state.maxKm);
+  $('#dist').addEventListener('change', e => { state.maxKm = Number(e.target.value); save(K.dist, state.maxKm); render(); });
   $('#wishForm').addEventListener('submit', submitWish);
   $('#wishCancel').addEventListener('click', () => { resetWishForm(); $('#wishMsg').textContent = ''; });
   $('#copyProfile').addEventListener('click', copyProfile);

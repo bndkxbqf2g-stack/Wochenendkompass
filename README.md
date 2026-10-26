@@ -22,12 +22,14 @@ Zeitzone: je zwei Cron-Zeiten für Sommer-/Winterzeit (05:30/06:30 und 18:00/19:
 3. GitHub Pages aktivieren (Settings → Pages → Branch `main`, `/ (root)`)
 4. Lauf testen: Actions → „Tägliche Recherche“ → Run workflow
 
+## Entfernungsfilter
+Filter „Bis X km ab Zellingen“ auf dem Entdecken-Tab. Die Entfernung wird aus dem Ortsnamen in `place` geschätzt (Tabelle `DIST_KM` in `app.js`, grobe Straßenkilometer) oder aus einem optionalen Feld `distanceKm`. Einträge ohne erkennbaren Ort bleiben sichtbar.
+
 ## Wünsche zentral eintragen
 In der App unter „Recherche“ bei einem Wunsch „Zentral eintragen“ tippen, das GitHub-Issue absenden. Issue schließen = pausieren/löschen. Kein Token im Frontend.
 
 ## Noch nicht vorhanden
 - Echtes Web-Push im Hintergrund (benötigt Server mit Push-Abonnements). Bis dahin: Hinweis in der App beim Öffnen.
-- Entfernungsfilter
 
 ## Tests
 `node --test tests/research.test.mjs`
