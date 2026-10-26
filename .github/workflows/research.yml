@@ -1,0 +1,45 @@
+name: Tägliche Recherche
+
+on:
+  schedule:
+    # 07:30 Europe/Berlin: Sommerzeit = 05:30 UTC, Winterzeit = 06:30 UTC.
+    # Das Skript lässt nur den Lauf im 07:30-Fenster zu und höchstens einen pro Tag.
+    - cron: '30 5 * * *'
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+
+concurrency:
+  group: research
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Tests
+        run: node --test tests/research.test.mjs
+      - name: Recherche
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/research.mjs
+      - name: Ergebnisse sichern
+        if: always()
+        run: |
+          git config user.name "wochenendkompass-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          if ! git diff --cached --quiet; then
+            git commit -m "Recherche $(date -u +%F)"
+            git pull --rebase -q origin main
+            git push
+          fi

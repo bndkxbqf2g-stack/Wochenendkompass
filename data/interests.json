@@ -1,0 +1,21 @@
+{
+  "region": "Zellingen, Würzburg und Landkreis Würzburg, Ochsenfurt und Umgebung; weitere Ziele nur, wenn sie einen Ausflug rechtfertigen",
+  "foci": [
+    {
+      "name": "musik",
+      "text": "Techno- und House-Veranstaltungen, Clubnächte, Partys und Open-Airs in Würzburg und näherer Umgebung. Künstler besonders beachten: Matthias Kaden, Andreas Henneberg (auch überregional, wenn Termin in der Nähe). Bevorzugte Locations in Würzburg: Dornheim, Zauberberg, Labyrinth."
+    },
+    {
+      "name": "gastro",
+      "text": "Besondere Gastronomie: Brunch und Frühstück (auch sonntags), Biergärten, Bars, besondere Locations, Bier- und Weinangebote, Aktionen, Rabatte, saisonale Speisekarten und Menüs. Nicht nur bekannte Restaurants, mindestens acht verschiedene Quellen oder Quellenarten berücksichtigen."
+    },
+    {
+      "name": "schlemmerblock",
+      "text": "Schlemmerblock-Vorteile für Restaurants in Würzburg und Umgebung. Kategorie schlemmerblock. Nur Angaben, die auf einer offiziellen Seite belegt sind (Restaurant oder Schlemmerblock), mit Bedingungen und Gültigkeit."
+    },
+    {
+      "name": "natur",
+      "text": "Weinbergswanderungen, Bierwanderungen, Weinproben, Weinfeste, regionale Veranstaltungen und Märkte, Ausflüge für Paare, besondere Erlebnisse für ein Wochenende."
+    }
+  ]
+}

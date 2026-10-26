@@ -15,6 +15,7 @@ const SOURCES = [
   ['Reservix', 'https://www.reservix.de']
 ];
 const HOME = 'Zellingen';
+const REPO = 'bndkxbqf2g-stack/Wochenendkompass';
 const K = { wishes: 'wk_wishes', items: 'wk_items', settings: 'wk_settings', queue: 'wk_queue', feed: 'wk_feedcache' };
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -171,8 +172,13 @@ function renderWishes() {
       el('div', { class: 'actions' },
         el('button', { class: 'ghost sm', onclick: () => toggleWish(w.id) }, w.active ? 'Pausieren' : 'Aktivieren'),
         el('button', { class: 'ghost sm', onclick: () => editWish(w.id) }, 'Bearbeiten'),
+        w.active ? el('a', { href: centralLink(w), target: '_blank', rel: 'noopener' }, 'Zentral eintragen') : null,
         el('button', { class: 'ghost sm danger', onclick: () => deleteWish(w.id) }, 'Löschen'))));
   }
+}
+function centralLink(w) {
+  const body = `Kategorie: ${w.category}\nRegion: ${w.region || ''}\nPriorität: ${w.priority}`;
+  return `https://github.com/${REPO}/issues/new?labels=wunsch&title=${encodeURIComponent(w.text)}&body=${encodeURIComponent(body)}`;
 }
 function renderSources() {
   const ul = $('#sources'); ul.replaceChildren();
