@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T20:51:25.418Z",
+ "updated": "2026-10-26T20:53:24.344Z",
  "note": "Von Claude recherchiert. „ungeprüft“ = Quelle nicht eindeutig bestätigt.",
  "items": [
   {
@@ -18,8 +18,8 @@
    "verified": true,
    "priority": 3,
    "id": "083cc8f4e23d",
-   "found": "2026-10-26T20:51:25.418Z",
-   "lastSeen": "2026-10-26T20:51:25.418Z"
+   "found": "2026-10-26T20:53:24.344Z",
+   "lastSeen": "2026-10-26T20:53:24.344Z"
   },
   {
    "endDate": null,
@@ -37,8 +37,8 @@
    "verified": true,
    "priority": 3,
    "id": "456a301d776c",
-   "found": "2026-10-26T20:51:25.418Z",
-   "lastSeen": "2026-10-26T20:51:25.418Z"
+   "found": "2026-10-26T20:53:24.344Z",
+   "lastSeen": "2026-10-26T20:53:24.344Z"
   },
   {
    "endDate": null,
@@ -56,8 +56,8 @@
    "verified": true,
    "priority": 3,
    "id": "ed6549933e56",
-   "found": "2026-10-26T20:51:25.418Z",
-   "lastSeen": "2026-10-26T20:51:25.418Z"
+   "found": "2026-10-26T20:53:24.344Z",
+   "lastSeen": "2026-10-26T20:53:24.344Z"
   },
   {
    "endDate": null,
@@ -75,8 +75,8 @@
    "verified": true,
    "priority": 3,
    "id": "e5a1c703847a",
-   "found": "2026-10-26T20:51:25.418Z",
-   "lastSeen": "2026-10-26T20:51:25.418Z"
+   "found": "2026-10-26T20:53:24.344Z",
+   "lastSeen": "2026-10-26T20:53:24.344Z"
   },
   {
    "endDate": null,
@@ -94,8 +94,46 @@
    "verified": true,
    "priority": 3,
    "id": "9d7ceef3b718",
-   "found": "2026-10-26T20:51:25.418Z",
-   "lastSeen": "2026-10-26T20:51:25.418Z"
+   "found": "2026-10-26T20:53:24.344Z",
+   "lastSeen": "2026-10-26T20:53:24.344Z"
+  },
+  {
+   "endDate": null,
+   "ticketUrl": null,
+   "soldOut": false,
+   "organizer": "",
+   "time": "19:00",
+   "title": "Das Kriminal Dinner: Der Polterabendkiller",
+   "category": "gastro",
+   "date": "2026-10-31",
+   "place": "Hotel Wittelsbacher Höhe, Würzburg",
+   "price": "",
+   "description": "Krimi-Dinner, früherer Termin der Reihe. Preis in der Quelle nicht angegeben.",
+   "url": "https://veranstaltungen.meinestadt.de/zellingen/event-detail/41659688/155284645",
+   "verified": true,
+   "priority": 3,
+   "id": "648281e76fa8",
+   "found": "2026-10-26T20:53:24.344Z",
+   "lastSeen": "2026-10-26T20:53:24.344Z"
+  },
+  {
+   "endDate": null,
+   "ticketUrl": null,
+   "soldOut": false,
+   "organizer": "",
+   "time": "19:00",
+   "title": "Das Musical Dinner",
+   "category": "gastro",
+   "date": "2026-11-14",
+   "place": "Hotel Wittelsbacher Höhe, Würzburg",
+   "price": "",
+   "description": "Dinner mit Musical-Programm. Preis in der Quelle nicht angegeben.",
+   "url": "https://veranstaltungen.meinestadt.de/zellingen/event-detail/42000213/155285096",
+   "verified": true,
+   "priority": 3,
+   "id": "afa74fdc05d4",
+   "found": "2026-10-26T20:53:24.344Z",
+   "lastSeen": "2026-10-26T20:53:24.344Z"
   },
   {
    "endDate": null,
@@ -113,8 +151,8 @@
    "verified": true,
    "priority": 1,
    "id": "933c2349574b",
-   "found": "2026-10-26T20:51:25.418Z",
-   "lastSeen": "2026-10-26T20:51:25.418Z"
+   "found": "2026-10-26T20:53:24.344Z",
+   "lastSeen": "2026-10-26T20:53:24.344Z"
   },
   {
    "endDate": null,
@@ -132,8 +170,8 @@
    "verified": true,
    "priority": 1,
    "id": "dca74ce3c2fd",
-   "found": "2026-10-26T20:51:25.418Z",
-   "lastSeen": "2026-10-26T20:51:25.418Z"
+   "found": "2026-10-26T20:53:24.344Z",
+   "lastSeen": "2026-10-26T20:53:24.344Z"
   },
   {
    "endDate": null,
@@ -151,8 +189,8 @@
    "verified": false,
    "priority": 1,
    "id": "8d931a937ee5",
-   "found": "2026-10-26T20:51:25.418Z",
-   "lastSeen": "2026-10-26T20:51:25.418Z"
+   "found": "2026-10-26T20:53:24.344Z",
+   "lastSeen": "2026-10-26T20:53:24.344Z"
   }
  ],
  "newIds": [
@@ -161,6 +199,8 @@
   "ed6549933e56",
   "e5a1c703847a",
   "9d7ceef3b718",
+  "648281e76fa8",
+  "afa74fdc05d4",
   "933c2349574b",
   "dca74ce3c2fd",
   "8d931a937ee5"

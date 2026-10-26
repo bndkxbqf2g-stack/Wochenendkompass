@@ -93,6 +93,8 @@ function sorted(list) {
 }
 
 /* ---------- Karten ---------- */
+const mapsBack = it => 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(it.place || it.title) +
+  '&destination=' + encodeURIComponent(HOME) + '&travelmode=transit';
 const mapsDir = (it, mode) => 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(HOME) +
   '&destination=' + encodeURIComponent(it.place || it.title) + '&travelmode=' + mode;
 function fmtDate(it) {
@@ -115,8 +117,9 @@ function card(it) {
   if (src) acts.push(el('a', { class: 'main', href: src, target: '_blank', rel: 'noopener' }, 'Offizielle Eventseite'));
   if (tk && !it.soldOut) acts.push(el('a', { href: tk, target: '_blank', rel: 'noopener' }, 'Tickets'));
   if (it.place) {
-    acts.push(el('a', { href: mapsDir(it, 'transit'), target: '_blank', rel: 'noopener' }, 'Anreise ÖPNV'));
+    acts.push(el('a', { href: mapsDir(it, 'transit'), target: '_blank', rel: 'noopener' }, 'ÖPNV ab ' + HOME));
     acts.push(el('a', { href: mapsDir(it, 'driving'), target: '_blank', rel: 'noopener' }, 'Auto'));
+    if (it.time && it.time >= '18:00') acts.push(el('a', { href: mapsBack(it), target: '_blank', rel: 'noopener' }, 'Rückfahrt nach ' + HOME));
   }
   const fav = state.favs.includes(it.id);
   const c = el('article', { class: 'card' },

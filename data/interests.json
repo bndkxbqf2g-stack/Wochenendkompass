@@ -1,9 +1,13 @@
 {
-  "region": "Zellingen, Würzburg und Landkreis Würzburg, Ochsenfurt und Umgebung; weitere Ziele nur, wenn sie einen Ausflug rechtfertigen",
+  "region": "Wohnort: Zellingen (Main-Spessart-Bahn, Deutschlandticket). Fokus: Zellingen, Karlstadt, Retzbach, Thüngersheim, Veitshöchheim, Würzburg und Landkreis, Ochsenfurt; weitere Ziele nur, wenn sie einen Ausflug rechtfertigen. Bei Abendveranstaltungen die Rückfahrt nach Zellingen mitdenken.",
   "foci": [
     {
       "name": "musik",
       "text": "Techno-, House- und Clubveranstaltungen in Würzburg und näherer Umgebung. Wichtigste Locations: Waldschänke Dornheim (Club), Zauberberg (Veitshöchheimer Str. 20) und Alter Ego. Außerdem Labyrinth. Künstler: Matthias Kaden, Andreas Henneberg (auch überregional, wenn in der Nähe). Quellen: Veranstalterseiten, Regioactive, Resident Advisor, Rausgegangen, Ticketanbieter und öffentlich indexierte Social-Media-Beiträge."
+    },
+    {
+      "name": "umgebung",
+      "text": "Veranstaltungen und Angebote in und um Zellingen: Zellingen, Retzbach, Karlstadt (Weinfeste, Heckenwirtschaften, Nikolaustage, Veranstaltungskalender), Thüngersheim, Veitshöchheim, Himmelstadt, Lohr am Main. Gemeinde- und Tourismuskalender, Vereine, Weingüter, Gasthäuser; Federweißer, Weinproben, Märkte, Konzerte."
     },
     {
       "name": "gastro-bundschuh",
