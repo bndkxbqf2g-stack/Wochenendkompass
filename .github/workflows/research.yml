@@ -2,10 +2,12 @@ name: Tägliche Recherche
 
 on:
   schedule:
-    # 07:30 Europe/Berlin: Sommerzeit = 05:30 UTC, Winterzeit = 06:30 UTC.
-    # Das Skript lässt nur den Lauf im 07:30-Fenster zu und höchstens einen pro Tag.
+    # 07:30 und 20:00 Europe/Berlin (Sommer-/Winterzeit je als UTC-Paar).
+    # Das Skript lässt nur den Lauf im passenden Fenster zu, höchstens einen pro Fenster.
     - cron: '30 5 * * *'
     - cron: '30 6 * * *'
+    - cron: '0 18 * * *'
+    - cron: '0 19 * * *'
   workflow_dispatch:
 
 permissions:

@@ -19,12 +19,21 @@ export function berlinParts(d = new Date()) {
   return { date, hour: Number(time.slice(0, 2)), minute: Number(time.slice(3, 5)) };
 }
 
-// Cron läuft zweimal (Sommer-/Winterzeit-UTC); nur der Lauf um ca. 07:30 Berlin-Zeit zählt.
+// Zwei Läufe täglich: ca. 07:30 und ca. 20:00 Berlin-Zeit. Cron läuft je zweimal (Sommer-/Winterzeit-UTC);
+// nur der Lauf im passenden Fenster zählt, höchstens einer pro Fenster und Tag.
+export function slotOf(p) {
+  if (p.hour >= 7 && p.hour <= 9 && !(p.hour === 7 && p.minute < 25)) return 'am';
+  if (p.hour >= 20 && p.hour <= 22) return 'pm';
+  return null;
+}
 export function shouldRun({ event, now = new Date(), lastUpdated = null }) {
   if (event !== 'schedule') return { run: true };
-  const p = berlinParts(now);
-  if (p.hour < 7 || p.hour > 9 || (p.hour === 7 && p.minute < 25)) return { run: false, why: `außerhalb des 07:30-Fensters (${p.date} ${p.hour}:${String(p.minute).padStart(2, '0')} Berlin)` };
-  if (lastUpdated && berlinParts(new Date(lastUpdated)).date === p.date) return { run: false, why: 'heute bereits gelaufen' };
+  const p = berlinParts(now), slot = slotOf(p);
+  if (!slot) return { run: false, why: `außerhalb der Laufzeiten (${p.date} ${p.hour}:${String(p.minute).padStart(2, '0')} Berlin)` };
+  if (lastUpdated) {
+    const l = berlinParts(new Date(lastUpdated));
+    if (l.date === p.date && slotOf(l) === slot) return { run: false, why: 'in diesem Zeitfenster bereits gelaufen' };
+  }
   return { run: true };
 }
 
@@ -112,14 +121,14 @@ async function issueWishes() {
 /* ---------- Claude-Recherche ---------- */
 const MODEL = process.env.RESEARCH_MODEL || 'claude-sonnet-5-5';
 
-function buildPrompt(focusText, region, todayBerlin) {
+function buildPrompt(focusText, region, todayBerlin, exclude = []) {
   return `Heute ist ${todayBerlin} (Europe/Berlin). Recherchiere mit der Websuche aktuelle, zukünftige Angebote und Veranstaltungen.
 
 Region: ${region}
 
 Suchauftrag:
 ${focusText}
-
+${exclude.length ? '\nNicht berücksichtigen: ' + exclude.join(', ') + '\n' : ''}
 Regeln:
 - Nur echte Einträge, die du auf einer Webseite tatsächlich gefunden hast. Nichts erfinden oder schätzen.
 - Jeder Eintrag braucht die URL der Seite, auf der du ihn gefunden hast (https). Bevorzuge offizielle Veranstalter-, Stadt-, Tourismus- und Restaurantseiten, dann seriöse Ticketanbieter.
@@ -188,7 +197,7 @@ async function main() {
   for (const job of jobs) {
     const c = { name: job.name, ok: false, found: 0 };
     try {
-      const text = await askClaude(buildPrompt(job.text, interests.region, today));
+      const text = await askClaude(buildPrompt(job.text, interests.region, today, interests.exclude || []));
       const arr = extractJson(text);
       if (!arr) throw new Error('keine gültige JSON-Antwort');
       const valid = arr.map(validateItem).filter(Boolean);

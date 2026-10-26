@@ -14,6 +14,16 @@ test('höchstens ein Lauf pro Tag', () => {
   const r = shouldRun({ event: 'schedule', now: new Date('2026-12-10T06:40:00Z'), lastUpdated: '2026-12-10T06:31:00Z' });
   assert.equal(r.run, false);
 });
+test('Abendlauf 20:00 Berlin (Sommer 18:00 UTC, Winter 19:00 UTC)', () => {
+  assert.equal(shouldRun({ event: 'schedule', now: new Date('2026-07-10T18:00:00Z') }).run, true);
+  assert.equal(shouldRun({ event: 'schedule', now: new Date('2026-12-10T19:00:00Z') }).run, true);
+  assert.equal(shouldRun({ event: 'schedule', now: new Date('2026-12-10T18:00:00Z') }).run, false);
+});
+test('Morgenlauf blockiert den Abendlauf nicht, Doppellauf im selben Fenster schon', () => {
+  const am = '2026-12-10T06:31:00Z';
+  assert.equal(shouldRun({ event: 'schedule', now: new Date('2026-12-10T19:00:00Z'), lastUpdated: am }).run, true);
+  assert.equal(shouldRun({ event: 'schedule', now: new Date('2026-12-10T19:10:00Z'), lastUpdated: '2026-12-10T19:00:30Z' }).run, false);
+});
 test('manueller Start ignoriert das Fenster', () => {
   assert.equal(shouldRun({ event: 'workflow_dispatch', now: new Date('2026-12-10T12:00:00Z') }).run, true);
 });

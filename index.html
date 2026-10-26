@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#1f3a34">
+<meta name="theme-color" content="#0e141c">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Wochenendkompass">
@@ -14,128 +14,118 @@
 <title>Wochenendkompass</title>
 </head>
 <body>
-<header class="top">
-  <h1>Wochenendkompass</h1>
-  <div id="syncStatus" class="sync" aria-live="polite">nur lokal</div>
-</header>
-
-<div id="banner" class="banner" hidden></div>
-
 <main>
   <section id="tab-entdecken" class="tab active">
-    <div class="chips" id="filters" role="tablist" aria-label="Filter"></div>
+    <header class="hero">
+      <div>
+        <h1>Was passt?</h1>
+        <p id="checked" class="sub">Noch nicht geprüft</p>
+      </div>
+      <button id="refreshIcon" class="icon-btn" aria-label="Aktualisieren">⟳</button>
+    </header>
+    <div class="chips" id="filters" aria-label="Filter"></div>
+    <div id="newBanner" class="notice" hidden></div>
     <div class="row">
-      <select id="range" aria-label="Zeitraum">
-        <option value="all">Alle Termine</option>
-        <option value="weekend">Dieses Wochenende</option>
-        <option value="7">Nächste 7 Tage</option>
-        <option value="30">Nächste 30 Tage</option>
-      </select>
-      <button id="addItemBtn" class="ghost">+ Eintrag</button>
+      <button id="updateBtn" class="outline wide">⟳ Jetzt aktualisieren</button>
     </div>
+    <select id="range" aria-label="Zeitraum">
+      <option value="all">Alle Termine</option>
+      <option value="weekend">Dieses Wochenende</option>
+      <option value="7">Nächste 7 Tage</option>
+      <option value="30">Nächste 30 Tage</option>
+    </select>
     <div id="list" class="list"></div>
     <p id="empty" class="hint" hidden></p>
   </section>
 
-  <section id="tab-schlemmer" class="tab">
-    <p class="hint">Schlemmerblock-Vorteile getrennt von normalen Restaurantangeboten. Vorteil und Gültigkeit immer beim Restaurant bzw. im Schlemmerblock prüfen.</p>
-    <div id="schlemmerList" class="list"></div>
+  <section id="tab-favoriten" class="tab">
+    <header class="hero"><div><h1>Favoriten</h1><p class="sub">Eure gemerkten Tipps</p></div></header>
+    <div id="favList" class="list"></div>
+    <p id="favEmpty" class="hint" hidden>Noch nichts gemerkt. Tippe bei einem Tipp auf das Herz.</p>
   </section>
 
-  <section id="tab-wuensche" class="tab">
+  <section id="tab-info" class="tab">
+    <header class="hero"><div><h1>Info</h1><p class="sub">Profil, Recherche und Hinweise</p></div></header>
+
+    <div class="grid2">
+      <div class="card small"><h3>📱 App merken</h3><p>Den App-Link könnt ihr beide auf dem Handy zum Home-Bildschirm legen.</p></div>
+      <div class="card small"><h3>🔔 Frisch beobachtet</h3><p>Neue, geänderte oder knapp verfügbare Tipps werden als Änderung markiert.</p></div>
+    </div>
+
     <form id="wishForm" class="card form">
-      <h2>Recherche ergänzen</h2>
+      <h2>🔎 Recherche ergänzen</h2>
+      <p class="hint">Hinterlegt hier zusätzliche Wünsche, Orte oder Künstler, nach denen künftig gesucht werden soll.</p>
       <input type="hidden" id="wishId">
-      <label>Suchwunsch
-        <input id="wishText" required maxlength="200" placeholder="z. B. House-Partys in Würzburg">
-      </label>
-      <div class="two">
-        <label>Kategorie
-          <select id="wishCat"></select>
-        </label>
-        <label>Priorität
-          <select id="wishPrio">
-            <option value="1">Hoch</option>
-            <option value="2" selected>Normal</option>
-            <option value="3">Niedrig</option>
-          </select>
-        </label>
-      </div>
-      <label>Region
-        <input id="wishRegion" maxlength="80" value="Würzburg">
-      </label>
-      <div class="two">
-        <button type="submit" id="wishSave">Hinzufügen</button>
-        <button type="button" id="wishCancel" class="ghost" hidden>Abbrechen</button>
-      </div>
+      <input id="wishText" required maxlength="200" placeholder="z. B. Andreas Henneberg in Würzburg">
+      <select id="wishCat" aria-label="Kategorie"></select>
+      <input id="wishRegion" maxlength="80" placeholder="Region, z. B. Würzburg / Ochsenfurt" value="Würzburg">
+      <select id="wishPrio" aria-label="Priorität">
+        <option value="1">Hohe Priorität</option>
+        <option value="2" selected>Mittlere Priorität</option>
+        <option value="3">Niedrige Priorität</option>
+      </select>
+      <button type="submit" id="wishSave" class="primary">+ Recherchewunsch speichern</button>
+      <button type="button" id="wishCancel" class="outline" hidden>Abbrechen</button>
+      <div id="syncStatus" class="status" aria-live="polite"><i></i><span>Nur auf diesem Gerät</span></div>
       <p id="wishMsg" class="hint"></p>
+      <div id="wishList" class="wishes"></div>
+      <button type="button" id="copyProfile" class="outline wide">Rechercheprofil kopieren</button>
     </form>
-    <p class="hint">Zentral eintragen: öffnet ein GitHub-Issue mit Label „wunsch“. Nach dem Absenden berücksichtigt der tägliche Lauf den Wunsch; Issue schließen = pausieren.</p>
-    <div id="wishList" class="list"></div>
-  </section>
 
-  <section id="tab-einstellungen" class="tab">
     <div class="card form">
-      <h2>Synchronisierung</h2>
-      <p class="hint">Der Wochenendkompass zeigt Ergebnisse aus einem Feed (JSON) und kann Wünsche mit einem Backend abgleichen. Ohne Backend bleibt alles auf diesem Gerät.</p>
-      <label>Ergebnis-Feed (URL)
-        <input id="feedUrl" type="url" placeholder="data/feed.json">
-      </label>
-      <label>Backend für Wünsche (URL, optional)
-        <input id="apiUrl" type="url" placeholder="https://…/api">
-      </label>
-      <label>Zugangs-Token (nur auf diesem Gerät)
-        <input id="apiToken" type="password" autocomplete="off">
-      </label>
-      <button id="saveSettings">Speichern &amp; synchronisieren</button>
-      <p id="syncDetail" class="hint"></p>
-    </div>
-    <div class="card form">
-      <h2>Benachrichtigungen</h2>
+      <h2>🔔 Push-Benachrichtigungen</h2>
       <p id="pushState" class="hint"></p>
-      <button id="pushBtn" class="ghost">Hinweise auf diesem Gerät erlauben</button>
+      <button id="pushBtn" class="outline wide">Hinweise auf diesem Gerät erlauben</button>
     </div>
-    <div class="card form">
-      <h2>Datensicherung</h2>
+
+    <details class="card form">
+      <summary>Verbindung &amp; Sync (optional)</summary>
+      <p class="hint">Die Tipps kommen aus <code>data/feed.json</code> im Repo. Nur ändern, wenn ihr ein eigenes Backend nutzt.</p>
+      <input id="feedUrl" type="url" placeholder="Feed-URL (leer = data/feed.json)">
+      <input id="apiUrl" type="url" placeholder="Backend-URL für Wünsche (optional)">
+      <input id="apiToken" type="password" autocomplete="off" placeholder="Zugangs-Token (nur dieses Gerät)">
+      <button id="saveSettings" class="outline">Speichern &amp; synchronisieren</button>
+      <p id="syncDetail" class="hint"></p>
+    </details>
+
+    <details class="card form">
+      <summary>Daten &amp; Quellen</summary>
+      <button id="addItemBtn" class="outline">+ Eigenen Tipp eintragen</button>
       <div class="two">
-        <button id="exportBtn" class="ghost">Exportieren</button>
-        <button id="importBtn" class="ghost">Importieren</button>
+        <button id="exportBtn" class="outline">Exportieren</button>
+        <button id="importBtn" class="outline">Importieren</button>
       </div>
       <input type="file" id="importFile" accept="application/json" hidden>
-    </div>
-    <div class="card">
-      <h2>Quellen für die Recherche</h2>
-      <p class="hint">Startpunkte (ungeprüft, Seiten können sich ändern):</p>
+      <p class="hint">Startpunkte der Recherche (ungeprüft):</p>
       <ul id="sources" class="sources"></ul>
-    </div>
+    </details>
   </section>
 </main>
 
 <nav class="tabbar" aria-label="Navigation">
-  <button data-tab="entdecken" class="active">Entdecken</button>
-  <button data-tab="schlemmer">Schlemmer</button>
-  <button data-tab="wuensche">Recherche</button>
-  <button data-tab="einstellungen">Mehr</button>
+  <button data-tab="entdecken" class="active"><span>✦</span>Entdecken</button>
+  <button data-tab="favoriten"><span>♡</span>Favoriten</button>
+  <button data-tab="info"><span>ⓘ</span>Info</button>
 </nav>
 
 <dialog id="itemDialog">
   <form method="dialog" id="itemForm" class="form">
-    <h2>Eintrag hinzufügen</h2>
-    <label>Titel <input id="iTitle" required maxlength="120"></label>
+    <h2>Tipp eintragen</h2>
+    <input id="iTitle" required maxlength="120" placeholder="Titel">
     <div class="two">
-      <label>Kategorie <select id="iCat"></select></label>
-      <label>Preis <input id="iPrice" maxlength="40" placeholder="z. B. 12 €"></label>
+      <select id="iCat" aria-label="Kategorie"></select>
+      <input id="iPrice" maxlength="40" placeholder="Preis, z. B. 12 €">
     </div>
     <div class="two">
-      <label>Datum <input id="iDate" type="date"></label>
-      <label>Uhrzeit <input id="iTime" type="time"></label>
+      <input id="iDate" type="date" aria-label="Datum">
+      <input id="iTime" type="time" aria-label="Uhrzeit">
     </div>
-    <label>Ort / Adresse <input id="iPlace" maxlength="120"></label>
-    <label>Beschreibung <textarea id="iDesc" rows="3" maxlength="400"></textarea></label>
-    <label>Quelle (URL) <input id="iUrl" type="url"></label>
+    <input id="iPlace" maxlength="120" placeholder="Ort / Adresse">
+    <textarea id="iDesc" rows="3" maxlength="400" placeholder="Beschreibung"></textarea>
+    <input id="iUrl" type="url" placeholder="Quelle (URL)">
     <div class="two">
-      <button value="ok" id="iSave">Speichern</button>
-      <button value="cancel" class="ghost" formnovalidate>Abbrechen</button>
+      <button value="ok" class="primary">Speichern</button>
+      <button value="cancel" class="outline" formnovalidate>Abbrechen</button>
     </div>
   </form>
 </dialog>

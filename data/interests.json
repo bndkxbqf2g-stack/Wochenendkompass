@@ -3,11 +3,15 @@
   "foci": [
     {
       "name": "musik",
-      "text": "Techno- und House-Veranstaltungen, Clubnächte, Partys und Open-Airs in Würzburg und näherer Umgebung. Künstler besonders beachten: Matthias Kaden, Andreas Henneberg (auch überregional, wenn Termin in der Nähe). Bevorzugte Locations in Würzburg: Dornheim, Zauberberg, Labyrinth."
+      "text": "Techno-, House- und Clubveranstaltungen in Würzburg und näherer Umgebung. Wichtigste Locations: Waldschänke Dornheim (Club), Zauberberg (Veitshöchheimer Str. 20) und Alter Ego. Außerdem Labyrinth. Künstler: Matthias Kaden, Andreas Henneberg (auch überregional, wenn in der Nähe). Quellen: Veranstalterseiten, Regioactive, Resident Advisor, Rausgegangen, Ticketanbieter und öffentlich indexierte Social-Media-Beiträge."
+    },
+    {
+      "name": "gastro-bundschuh",
+      "text": "Restaurant Bundschuh an der Residenz (Residenzplatz 1, Würzburg): aktuelle Angebote für Frühstück und abendliche Menüs oder Dinner, mit Preisen und Gültigkeit. Prüfe Website, Reservierungsseiten und öffentlich indexierte Instagram- oder Facebook-Beiträge."
     },
     {
       "name": "gastro",
-      "text": "Besondere Gastronomie: Brunch und Frühstück (auch sonntags), Biergärten, Bars, besondere Locations, Bier- und Weinangebote, Aktionen, Rabatte, saisonale Speisekarten und Menüs. Nicht nur bekannte Restaurants, mindestens acht verschiedene Quellen oder Quellenarten berücksichtigen."
+      "text": "Gesamte Gastronomie in Würzburg und Umgebung: Brunch und Frühstück (auch sonntags), Dinner und Menüs, Biergärten, Bars, besondere Locations, Bier- und Weinangebote, Aktionen, Rabatte, saisonale Karten. Nicht nur bekannte Restaurants; mindestens acht verschiedene Quellen oder Quellenarten (Restaurantseiten, Speisekarten, Reservierungssysteme, Tourismusseiten, Presse, Social Media)."
     },
     {
       "name": "schlemmerblock",
@@ -17,5 +21,8 @@
       "name": "natur",
       "text": "Weinbergswanderungen, Bierwanderungen, Weinproben, Weinfeste, regionale Veranstaltungen und Märkte, Ausflüge für Paare, besondere Erlebnisse für ein Wochenende."
     }
+  ],
+  "exclude": [
+    "Airport Würzburg (Club Airport)"
   ]
 }

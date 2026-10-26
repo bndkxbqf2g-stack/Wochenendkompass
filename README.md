@@ -4,7 +4,7 @@ Mobile-first PWA für Ausflüge, Events und Genuss in Würzburg und Umgebung.
 
 ## Aufbau
 - **PWA** (`index.html`, `app.js`, `sw.js`): Entdecken, Schlemmerblock, Recherche ergänzen, Einstellungen, Offline-Cache
-- **Recherchelauf** (`scripts/research.mjs`, `.github/workflows/research.yml`): täglich ca. 07:30 Uhr (Europe/Berlin)
+- **Recherchelauf** (`scripts/research.mjs`, `.github/workflows/research.yml`): zweimal täglich, ca. 07:30 und 20:00 Uhr (Europe/Berlin)
 - **Daten** (`data/`): `feed.json` (Ergebnisse), `interests.json` (feste Interessen, ohne Code änderbar), `wishes.json`, `wishstatus.json`, `runlog.json` (Lauf-Protokoll)
 
 ## Ablauf des Laufs
@@ -14,7 +14,7 @@ Mobile-first PWA für Ausflüge, Events und Genuss in Würzburg und Umgebung.
 4. Zusammenführen: Duplikate raus, abgelaufene Termine raus, `found` bleibt erhalten
 5. Ergebnis ins Repo committen; die App liest `data/feed.json`
 
-Zeitzone: zwei Cron-Zeiten (05:30 und 06:30 UTC), das Skript lässt nur den Lauf im 07:30-Fenster zu und höchstens einen pro Tag.
+Zeitzone: je zwei Cron-Zeiten für Sommer-/Winterzeit (05:30/06:30 und 18:00/19:00 UTC); das Skript lässt nur den Lauf im passenden Fenster zu, höchstens einen pro Fenster.
 
 ## Einrichtung (einmalig)
 1. Repo-Secret `ANTHROPIC_API_KEY` anlegen (Settings → Secrets and variables → Actions)
@@ -31,3 +31,6 @@ In der App unter „Recherche“ bei einem Wunsch „Zentral eintragen“ tippen
 
 ## Tests
 `node --test tests/research.test.mjs`
+
+## Recherche ohne API-Key
+Alternativ zur GitHub-Action laufen zwei geplante Claude-Aufgaben (07:30 und 20:00 Uhr), die `data/feed.json` aktualisieren und pushen. Ausgeschlossen: Airport Würzburg. Wichtig: Dornheim, Zauberberg, Alter Ego, Labyrinth, Bundschuh und die gesamte Gastro.
