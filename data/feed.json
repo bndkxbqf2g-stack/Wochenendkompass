@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T20:43:54.227Z",
+ "updated": "2026-10-26T20:51:25.418Z",
  "note": "Von Claude recherchiert. „ungeprüft“ = Quelle nicht eindeutig bestätigt.",
  "items": [
   {
@@ -18,8 +18,8 @@
    "verified": true,
    "priority": 3,
    "id": "083cc8f4e23d",
-   "found": "2026-10-26T20:43:54.227Z",
-   "lastSeen": "2026-10-26T20:43:54.227Z"
+   "found": "2026-10-26T20:51:25.418Z",
+   "lastSeen": "2026-10-26T20:51:25.418Z"
   },
   {
    "endDate": null,
@@ -37,8 +37,8 @@
    "verified": true,
    "priority": 3,
    "id": "456a301d776c",
-   "found": "2026-10-26T20:43:54.227Z",
-   "lastSeen": "2026-10-26T20:43:54.227Z"
+   "found": "2026-10-26T20:51:25.418Z",
+   "lastSeen": "2026-10-26T20:51:25.418Z"
   },
   {
    "endDate": null,
@@ -56,8 +56,8 @@
    "verified": true,
    "priority": 3,
    "id": "ed6549933e56",
-   "found": "2026-10-26T20:43:54.227Z",
-   "lastSeen": "2026-10-26T20:43:54.227Z"
+   "found": "2026-10-26T20:51:25.418Z",
+   "lastSeen": "2026-10-26T20:51:25.418Z"
   },
   {
    "endDate": null,
@@ -75,8 +75,8 @@
    "verified": true,
    "priority": 3,
    "id": "e5a1c703847a",
-   "found": "2026-10-26T20:43:54.227Z",
-   "lastSeen": "2026-10-26T20:43:54.227Z"
+   "found": "2026-10-26T20:51:25.418Z",
+   "lastSeen": "2026-10-26T20:51:25.418Z"
   },
   {
    "endDate": null,
@@ -94,27 +94,65 @@
    "verified": true,
    "priority": 3,
    "id": "9d7ceef3b718",
-   "found": "2026-10-26T20:43:54.227Z",
-   "lastSeen": "2026-10-26T20:43:54.227Z"
+   "found": "2026-10-26T20:51:25.418Z",
+   "lastSeen": "2026-10-26T20:51:25.418Z"
   },
   {
    "endDate": null,
    "ticketUrl": null,
    "soldOut": false,
-   "organizer": "Restaurant Bundschuh",
-   "time": null,
-   "title": "Bundschuh an der Residenz: Menüs ab 69 €",
+   "organizer": "Bundschuh an der Residenz",
+   "time": "08:00",
+   "title": "Bundschuh: Frühstücksbuffet „Guten Morgen“",
    "category": "gastro",
    "date": null,
-   "place": "Residenzplatz 1, 97070 Würzburg",
-   "price": "Menüs ab 69 €, Hauptgerichte 20–35 €",
-   "description": "Täglich geöffnet (laut Schlemmer-Atlas 8–22 Uhr). Frühstück und konkrete Aktionen sind in den abrufbaren Quellen nicht belegt, bitte auf bundschuh-residenz.de, Instagram oder telefonisch (+49 931 80476339) prüfen.",
-   "url": "https://www.schlemmer-atlas.de/restaurants/deutschland/wuerzburg/restaurant-bundschuh/",
+   "place": "Bundschuh an der Residenz, Residenzplatz 1, Würzburg",
+   "price": "",
+   "description": "Täglich 8:00–11:30 Uhr: Backwaren, süße und herzhafte Klassiker, regionale Produkte, Eierspeisen, frisches Obst. Preis in der Quelle nicht genannt. Quelle: FRIZZ (2.9.2026).",
+   "url": "https://frizz-wuerzburg.de/rubriken/gastro/bundschuh-an-der-residenz/",
+   "verified": true,
+   "priority": 1,
+   "id": "933c2349574b",
+   "found": "2026-10-26T20:51:25.418Z",
+   "lastSeen": "2026-10-26T20:51:25.418Z"
+  },
+  {
+   "endDate": null,
+   "ticketUrl": null,
+   "soldOut": false,
+   "organizer": "Bundschuh an der Residenz",
+   "time": "17:00",
+   "title": "Bundschuh: Abendkarte „Franken. Neu gedacht.“",
+   "category": "gastro",
+   "date": null,
+   "place": "Bundschuh an der Residenz, Residenzplatz 1, Würzburg",
+   "price": "Hauptgerichte laut Schlemmer-Atlas 20–35 €",
+   "description": "Täglich 17:00–22:00 Uhr à la carte, u. a. Schäufele, Knoblauch-Garnelen, Herbst-Bowl; vegetarisch und vegan möglich. Weine vom Staatlichen Hofkeller. Quelle: FRIZZ (2.9.2026).",
+   "url": "https://frizz-wuerzburg.de/rubriken/gastro/bundschuh-an-der-residenz/",
+   "verified": true,
+   "priority": 1,
+   "id": "dca74ce3c2fd",
+   "found": "2026-10-26T20:51:25.418Z",
+   "lastSeen": "2026-10-26T20:51:25.418Z"
+  },
+  {
+   "endDate": null,
+   "ticketUrl": null,
+   "soldOut": false,
+   "organizer": "Bundschuh an der Residenz",
+   "time": null,
+   "title": "Bundschuh Menü (4 Gänge, optional mit Weinbegleitung)",
+   "category": "gastro",
+   "date": null,
+   "place": "Bundschuh an der Residenz, Residenzplatz 1, Würzburg",
+   "price": "ab 69 € laut Schlemmer-Atlas, nicht bestätigt",
+   "description": "Vier Gänge u. a. mit Hokkaido-Süppchen, Garnelen, Ochsenbacke und Schoko-Dessert; Weinbegleitung vom Hofkeller auf Wunsch. Stand September 2026, aktuelles Menü auf bundschuh-residenz.de prüfen.",
+   "url": "https://www.city-wuerzburg.com/bundschuh-an-der-residenz/",
    "verified": false,
    "priority": 1,
-   "id": "59cd7087416c",
-   "found": "2026-10-26T20:43:54.227Z",
-   "lastSeen": "2026-10-26T20:43:54.227Z"
+   "id": "8d931a937ee5",
+   "found": "2026-10-26T20:51:25.418Z",
+   "lastSeen": "2026-10-26T20:51:25.418Z"
   }
  ],
  "newIds": [
@@ -123,6 +161,8 @@
   "ed6549933e56",
   "e5a1c703847a",
   "9d7ceef3b718",
-  "59cd7087416c"
+  "933c2349574b",
+  "dca74ce3c2fd",
+  "8d931a937ee5"
  ]
 }
