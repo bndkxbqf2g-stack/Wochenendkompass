@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f3a34">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Wochenendkompass">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+<title>Wochenendkompass</title>
+</head>
+<body>
+<header class="top">
+  <h1>Wochenendkompass</h1>
+  <div id="syncStatus" class="sync" aria-live="polite">nur lokal</div>
+</header>
+
+<div id="banner" class="banner" hidden></div>
+
+<main>
+  <section id="tab-entdecken" class="tab active">
+    <div class="chips" id="filters" role="tablist" aria-label="Filter"></div>
+    <div class="row">
+      <select id="range" aria-label="Zeitraum">
+        <option value="all">Alle Termine</option>
+        <option value="weekend">Dieses Wochenende</option>
+        <option value="7">Nächste 7 Tage</option>
+        <option value="30">Nächste 30 Tage</option>
+      </select>
+      <button id="addItemBtn" class="ghost">+ Eintrag</button>
+    </div>
+    <div id="list" class="list"></div>
+    <p id="empty" class="hint" hidden></p>
+  </section>
+
+  <section id="tab-schlemmer" class="tab">
+    <p class="hint">Schlemmerblock-Vorteile getrennt von normalen Restaurantangeboten. Vorteil und Gültigkeit immer beim Restaurant bzw. im Schlemmerblock prüfen.</p>
+    <div id="schlemmerList" class="list"></div>
+  </section>
+
+  <section id="tab-wuensche" class="tab">
+    <form id="wishForm" class="card form">
+      <h2>Recherche ergänzen</h2>
+      <input type="hidden" id="wishId">
+      <label>Suchwunsch
+        <input id="wishText" required maxlength="200" placeholder="z. B. House-Partys in Würzburg">
+      </label>
+      <div class="two">
+        <label>Kategorie
+          <select id="wishCat"></select>
+        </label>
+        <label>Priorität
+          <select id="wishPrio">
+            <option value="1">Hoch</option>
+            <option value="2" selected>Normal</option>
+            <option value="3">Niedrig</option>
+          </select>
+        </label>
+      </div>
+      <label>Region
+        <input id="wishRegion" maxlength="80" value="Würzburg">
+      </label>
+      <div class="two">
+        <button type="submit" id="wishSave">Hinzufügen</button>
+        <button type="button" id="wishCancel" class="ghost" hidden>Abbrechen</button>
+      </div>
+      <p id="wishMsg" class="hint"></p>
+    </form>
+    <div id="wishList" class="list"></div>
+  </section>
+
+  <section id="tab-einstellungen" class="tab">
+    <div class="card form">
+      <h2>Synchronisierung</h2>
+      <p class="hint">Der Wochenendkompass zeigt Ergebnisse aus einem Feed (JSON) und kann Wünsche mit einem Backend abgleichen. Ohne Backend bleibt alles auf diesem Gerät.</p>
+      <label>Ergebnis-Feed (URL)
+        <input id="feedUrl" type="url" placeholder="data/feed.json">
+      </label>
+      <label>Backend für Wünsche (URL, optional)
+        <input id="apiUrl" type="url" placeholder="https://…/api">
+      </label>
+      <label>Zugangs-Token (nur auf diesem Gerät)
+        <input id="apiToken" type="password" autocomplete="off">
+      </label>
+      <button id="saveSettings">Speichern &amp; synchronisieren</button>
+      <p id="syncDetail" class="hint"></p>
+    </div>
+    <div class="card form">
+      <h2>Benachrichtigungen</h2>
+      <p id="pushState" class="hint"></p>
+      <button id="pushBtn" class="ghost">Hinweise auf diesem Gerät erlauben</button>
+    </div>
+    <div class="card form">
+      <h2>Datensicherung</h2>
+      <div class="two">
+        <button id="exportBtn" class="ghost">Exportieren</button>
+        <button id="importBtn" class="ghost">Importieren</button>
+      </div>
+      <input type="file" id="importFile" accept="application/json" hidden>
+    </div>
+    <div class="card">
+      <h2>Quellen für die Recherche</h2>
+      <p class="hint">Startpunkte (ungeprüft, Seiten können sich ändern):</p>
+      <ul id="sources" class="sources"></ul>
+    </div>
+  </section>
+</main>
+
+<nav class="tabbar" aria-label="Navigation">
+  <button data-tab="entdecken" class="active">Entdecken</button>
+  <button data-tab="schlemmer">Schlemmer</button>
+  <button data-tab="wuensche">Recherche</button>
+  <button data-tab="einstellungen">Mehr</button>
+</nav>
+
+<dialog id="itemDialog">
+  <form method="dialog" id="itemForm" class="form">
+    <h2>Eintrag hinzufügen</h2>
+    <label>Titel <input id="iTitle" required maxlength="120"></label>
+    <div class="two">
+      <label>Kategorie <select id="iCat"></select></label>
+      <label>Preis <input id="iPrice" maxlength="40" placeholder="z. B. 12 €"></label>
+    </div>
+    <div class="two">
+      <label>Datum <input id="iDate" type="date"></label>
+      <label>Uhrzeit <input id="iTime" type="time"></label>
+    </div>
+    <label>Ort / Adresse <input id="iPlace" maxlength="120"></label>
+    <label>Beschreibung <textarea id="iDesc" rows="3" maxlength="400"></textarea></label>
+    <label>Quelle (URL) <input id="iUrl" type="url"></label>
+    <div class="two">
+      <button value="ok" id="iSave">Speichern</button>
+      <button value="cancel" class="ghost" formnovalidate>Abbrechen</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
