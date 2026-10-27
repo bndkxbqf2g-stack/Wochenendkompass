@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T20:53:24.344Z",
+ "updated": "2026-10-27T06:42:20.406Z",
  "note": "Von Claude recherchiert. „ungeprüft“ = Quelle nicht eindeutig bestätigt.",
  "items": [
   {
@@ -191,18 +191,48 @@
    "id": "8d931a937ee5",
    "found": "2026-10-26T20:53:24.344Z",
    "lastSeen": "2026-10-26T20:53:24.344Z"
+  },
+  {
+   "title": "Würzburger Weihnachtsmarkt 2026",
+   "category": "event",
+   "date": "2026-11-27",
+   "time": "10:00",
+   "endDate": "2026-12-23",
+   "place": "Marktplatz, 97070 Würzburg",
+   "price": "",
+   "description": "Mo–Sa 10–20:30, So 11–20:30 Uhr vor Falkenhaus und Marienkapelle. Künstler-Weihnachtsmarkt im Rathaushof an den Adventswochenenden.",
+   "url": "https://www.wuerzburg.de/weihnachtsmarkt",
+   "ticketUrl": null,
+   "soldOut": false,
+   "organizer": "Stadt Würzburg",
+   "id": "74193c4d72f1",
+   "verified": true,
+   "found": "2026-10-27T06:42:20.406Z",
+   "lastSeen": "2026-10-27T06:42:20.406Z",
+   "priority": 2
+  },
+  {
+   "title": "Winterzauber im Bürgerspital Weinstuben (Opening Party 13.11.)",
+   "category": "weinbier",
+   "date": "2026-11-13",
+   "time": "16:00",
+   "endDate": "2027-01-10",
+   "place": "Bürgerspital Weinstuben, Theaterstraße 19, Würzburg",
+   "price": "",
+   "description": "Weihnachtlicher Innenhof ab 16 Uhr, Winzerglühwein, Punsch. Partys u. a. 13.11. Opening, 21.11., 27.11. XMAS BEATS, 05.12. Nikolaus.",
+   "url": "https://www.buergerspital-weinstuben.de/feiern/unsere_feste/winterzauber/",
+   "ticketUrl": null,
+   "soldOut": false,
+   "organizer": "Bürgerspital Weinstuben",
+   "id": "2d0e3b55be37",
+   "verified": true,
+   "found": "2026-10-27T06:42:20.406Z",
+   "lastSeen": "2026-10-27T06:42:20.406Z",
+   "priority": 2
   }
  ],
  "newIds": [
-  "083cc8f4e23d",
-  "456a301d776c",
-  "ed6549933e56",
-  "e5a1c703847a",
-  "9d7ceef3b718",
-  "648281e76fa8",
-  "afa74fdc05d4",
-  "933c2349574b",
-  "dca74ce3c2fd",
-  "8d931a937ee5"
+  "74193c4d72f1",
+  "2d0e3b55be37"
  ]
 }

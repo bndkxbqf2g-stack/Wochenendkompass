@@ -4,5 +4,11 @@
   "event": "manuell (Claude-Sitzung)",
   "result": "10 Einträge",
   "notes": "Zauberberg: keine Termine abrufbar; Dornheim: nur Oktober-Termine (vergangen), Fr/Sa 23–5 Uhr geöffnet; Alter Ego: nichts gefunden; Bundschuh-Website und Instagram/Facebook für Werkzeuge gesperrt, Angebote stattdessen aus FRIZZ und city-wuerzburg.com (Sept. 2026); Airport laut Wunsch ausgeschlossen; Nacht der offenen Weinkeller 2026 ohne belegtes Datum (nur 22.11.2025); Brunch/Schlemmerblock ohne belegte Termine."
+ },
+ {
+  "at": "2026-10-27T06:42:20.406Z",
+  "event": "geplant (Claude-Sitzung)",
+  "result": "2 neu, 0 entfernt, 12 gesamt",
+  "notes": "Nicht erreichbar: Regioactive, Eventbrite, Eventfinder (Abruf gesperrt), Bundschuh-Website; Waldschänke Dornheim (Rausgegangen) ohne Termine; Zauberberg, Alter Ego, Kaden/Henneberg, Schlemmerblock, Zellingen/Karlstadt ohne belegte Termine; Wünsche: keine."
  }
 ]
